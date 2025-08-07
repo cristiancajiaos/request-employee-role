@@ -33,7 +33,7 @@ public class Employee {
   @Column(name = "password")
   private String password;
 
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
   @JoinColumn(name = "role_id")
   private Role role;
 
