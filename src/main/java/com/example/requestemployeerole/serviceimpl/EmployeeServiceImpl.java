@@ -5,6 +5,8 @@ import com.example.requestemployeerole.record.EmployeeDTO;
 import com.example.requestemployeerole.repository.EmployeeRepository;
 import com.example.requestemployeerole.repository.RoleRepository;
 import com.example.requestemployeerole.service.EmployeeService;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     Employee employeeToSave = convertToEntity(employeeDTO);
     Employee savedEmployee = employeeRepository.save(employeeToSave);
     return convertToDTO(savedEmployee);
+  }
+
+  @Override
+  public List<EmployeeDTO> getAllEmployees() {
+    return employeeRepository.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
   }
 
   private EmployeeDTO convertToDTO(Employee employee) {
