@@ -2,8 +2,10 @@ package com.example.requestemployeerole.controller;
 
 import com.example.requestemployeerole.record.RoleDTO;
 import com.example.requestemployeerole.service.RoleService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +26,10 @@ public class RoleController {
   @PostMapping
   public RoleDTO createRole(@RequestBody RoleDTO roleDTO) {
     return roleService.createRole(roleDTO);
+  }
+
+  @GetMapping
+  public List<RoleDTO> getAllRoles() {
+    return roleService.getAllRoles();
   }
 }
