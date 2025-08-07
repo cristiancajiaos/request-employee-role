@@ -37,6 +37,13 @@ public class RoleServiceImpl implements RoleService {
     return roleRepository.findById(id).map(this::convertToDTO);
   }
 
+  @Override
+  public RoleDTO deleteRole(Long id) {
+    Role foundRole = roleRepository.findById(id).orElseThrow();
+    roleRepository.deleteById(id);
+    return convertToDTO(foundRole);
+  }
+
   private RoleDTO convertToDTO(Role role) {
     return new RoleDTO(role.getId(), role.getName());
   }

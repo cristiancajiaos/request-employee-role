@@ -12,4 +12,6 @@ public interface RoleService {
 
   Optional<RoleDTO> getRoleById(Long id);
 
+  RoleDTO deleteRole(Long id);
+
 }
