@@ -12,4 +12,6 @@ public interface EmployeeService {
 
   Optional<EmployeeDTO> getEmployeeById(Long id);
 
+  EmployeeDTO deleteEmployee(Long id);
+
 }
