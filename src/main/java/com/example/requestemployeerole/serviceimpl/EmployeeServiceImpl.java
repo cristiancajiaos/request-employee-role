@@ -6,6 +6,7 @@ import com.example.requestemployeerole.repository.EmployeeRepository;
 import com.example.requestemployeerole.repository.RoleRepository;
 import com.example.requestemployeerole.service.EmployeeService;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,12 @@ public class EmployeeServiceImpl implements EmployeeService {
   public List<EmployeeDTO> getAllEmployees() {
     return employeeRepository.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
   }
+
+  @Override
+  public Optional<EmployeeDTO> getEmployeeById(Long id) {
+    return employeeRepository.findById(id).map(this::convertToDTO);
+  }
+
 
   private EmployeeDTO convertToDTO(Employee employee) {
     return new EmployeeDTO(employee.getId(), employee.getFullName(), employee.getUsername(),
