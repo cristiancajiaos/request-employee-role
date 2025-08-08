@@ -45,6 +45,17 @@ public class EmployeeServiceImpl implements EmployeeService {
   }
 
   @Override
+  public EmployeeDTO updateEmployee(Long id, EmployeeDTO employeeDTO) {
+    Employee employeeToUpdate = employeeRepository.findById(id).orElseThrow();
+    employeeToUpdate.setFullName(employeeDTO.fullName());
+    employeeToUpdate.setUsername(employeeDTO.username());
+    employeeToUpdate.setPassword(employeeDTO.password());
+    employeeToUpdate.setRole(employeeDTO.role());
+    Employee updatedEmployee = employeeRepository.save(employeeToUpdate);
+    return convertToDTO(updatedEmployee);
+  }
+
+  @Override
   public EmployeeDTO deleteEmployee(Long id) {
     Employee foundEmployee = employeeRepository.findById(id).orElseThrow();
     employeeRepository.deleteById(id);
